@@ -1,0 +1,22 @@
+# 依赖包
+node_modules/
+
+# 临时文件夹
+uploads/
+
+# 生成的图片
+saved_images/
+
+# 日志文件
+*.log
+
+# 环境变量配置
+.env
+
+# IDE配置
+.vscode/
+.idea/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db

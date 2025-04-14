@@ -1,0 +1,43 @@
+.image-upload-component {
+  text-align: center;
+  margin: 20px;
+}
+
+.upload-label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.upload-label:hover {
+  background-color: #f5f5f5;
+}
+
+.upload-button {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.preview-container {
+  margin-top: 10px;
+}
+
+.preview-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}

@@ -1,0 +1,346 @@
+{
+  "client_id": "user001",
+  "prompt": {
+    "99": {
+      "inputs": {
+        "steps": 20,
+        "cfg": 7,
+        "sampler_name": "euler_ancestral",
+        "scheduler": "normal",
+        "denoise": 1,
+        "image_output": "Hide",
+        "link_id": 0,
+        "save_prefix": "ComfyUI",
+        "seed": 1068348283418557,
+        "pipe": ["686", 0],
+        "model": ["753", 0],
+        "positive": ["692", 0],
+        "negative": ["692", 1],
+        "clip": ["748", 1]
+      },
+      "class_type": "easy fullkSampler",
+      "_meta": {
+        "title": "EasyKSampler (Full)"
+      }
+    },
+    "100": {
+      "inputs": {
+        "filename_prefix": "First_Sst",
+        "images": ["99", 1]
+      },
+      "class_type": "SaveImage",
+      "_meta": {
+        "title": "Save Image"
+      }
+    },
+    "686": {
+      "inputs": {
+        "ckpt_name": "abyssorangeXLElse_v10.safetensors",
+        "config_name": "Default",
+        "vae_name": "Baked VAE",
+        "clip_skip": -2,
+        "lora_name": "None",
+        "lora_model_strength": 0.27,
+        "lora_clip_strength": 0.29,
+        "resolution": "width x height (custom)",
+        "empty_latent_width": ["785", 0],
+        "empty_latent_height": ["785", 1],
+        "positive": ["760", 0],
+        "positive_token_normalization": "length+mean",
+        "positive_weight_interpretation": "A1111",
+        "negative": "lowres,worst quality,low quality,monochrome,old photo,lackluster,oversaturated,grayscale,blurry,colo\ncast,faded,drawing,paiting,crayon,disfigured,sketch,impressionist,text,signature,watermark,username,deformed,ugly,nsfw,\nmore finger,nake,\neasynegative, FastNegativeEmbedding, BadDream, badpic, badhandv4, holding, holding weapon, bag, handbag, holding bag, bald,underwear,panties,more legs,more fingers,amputated limb,broken body,",
+        "negative_token_normalization": "none",
+        "negative_weight_interpretation": "A1111",
+        "batch_size": 1,
+        "a1111_prompt_style": false
+      },
+      "class_type": "easy fullLoader",
+      "_meta": {
+        "title": "EasyLoader (Full)"
+      }
+    },
+    "692": {
+      "inputs": {
+        "switch": "On",
+        "base_positive": ["686", 4],
+        "base_negative": ["686", 5],
+        "controlnet_stack": ["699", 0]
+      },
+      "class_type": "CR Apply Multi-ControlNet",
+      "_meta": {
+        "title": "🕹️ CR Apply Multi-ControlNet"
+      }
+    },
+    "694": {
+      "inputs": {
+        "model": "wd-vit-tagger-v3",
+        "threshold": 0.75,
+        "character_threshold": 0.5,
+        "replace_underscore": false,
+        "trailing_comma": false,
+        "exclude_tags": "",
+        "image": ["779", 0]
+      },
+      "class_type": "WD14Tagger|pysssss",
+      "_meta": {
+        "title": "WD14 Tagger 🐍"
+      }
+    },
+    "699": {
+      "inputs": {
+        "switch_1": "On",
+        "controlnet_1": "controlnet-openpose-sdxl-1.0.safetensors",
+        "controlnet_strength_1": 1,
+        "start_percent_1": 0,
+        "end_percent_1": 1,
+        "switch_2": "Off",
+        "controlnet_2": "None",
+        "controlnet_strength_2": 1,
+        "start_percent_2": 0,
+        "end_percent_2": 1,
+        "switch_3": "Off",
+        "controlnet_3": "None",
+        "controlnet_strength_3": 0.22,
+        "start_percent_3": 0.225,
+        "end_percent_3": 0.876,
+        "image_1": ["767", 0]
+      },
+      "class_type": "CR Multi-ControlNet Stack",
+      "_meta": {
+        "title": "🕹️ CR Multi-ControlNet Stack"
+      }
+    },
+    "726": {
+      "inputs": {
+        "image": "【明日方舟图鉴】阿米娅多表情、立绘、皮肤 - 哔哩哔哩.png",
+        "upload": "image"
+      },
+      "class_type": "LoadImage",
+      "_meta": {
+        "title": "Load Image"
+      }
+    },
+    "748": {
+      "inputs": {
+        "model": ["686", 1],
+        "clip": ["686", 3],
+        "lora_stack": ["789", 0]
+      },
+      "class_type": "CR Apply LoRA Stack",
+      "_meta": {
+        "title": "💊 CR Apply LoRA Stack"
+      }
+    },
+    "753": {
+      "inputs": {
+        "preset": "PLUS (high strength)",
+        "lora_strength": 0.6,
+        "provider": "CPU",
+        "weight": 0.9,
+        "weight_faceidv2": 1,
+        "start_at": 0,
+        "end_at": 1,
+        "cache_mode": "all",
+        "use_tiled": false,
+        "model": ["748", 0],
+        "image": ["791", 0],
+        "attn_mask": ["782", 0]
+      },
+      "class_type": "easy ipadapterApply",
+      "_meta": {
+        "title": "Easy Apply IPAdapter"
+      }
+    },
+    "758": {
+      "inputs": {
+        "text": ["760", 0],
+        "text2": "amiya_\\(arknights\\), 1girl, solo, long_hair, looking_at_viewer, blue_eyes, skirt, brown_hair, animal_ears, jewelry, jacket, full_body, pantyhose, open_clothes, rabbit_ears, ring, multiple_rings, thumb_ring,(VIEWS:0), simple background, white background,\nmasterpiece,\nMultiple views of the same character in the same outfit,\nsolo,standing, best quality, \nside view, back view, front view,(((multiple views))),\n (simple background, white background:1.3),\n original character design,\nfull body character turnaround,full body,\nconceptart,\nanime character"
+      },
+      "class_type": "ShowText|pysssss",
+      "_meta": {
+        "title": "Show Text 🐍"
+      }
+    },
+    "760": {
+      "inputs": {
+        "a": ["694", 0],
+        "b": ["765", 0]
+      },
+      "class_type": "JWStringConcat",
+      "_meta": {
+        "title": "String Concatenate"
+      }
+    },
+    "765": {
+      "inputs": {
+        "strings": ",(VIEWS:0), simple background, white background,\nmasterpiece,\nMultiple views of the same character in the same outfit,\nsolo,standing, best quality, \nside view, back view, front view,(((multiple views))),\n (simple background, white background:1.3),\n original character design,\nfull body character turnaround,full body,\nconceptart,\nanime character",
+        "multiline": true,
+        "select": 332
+      },
+      "class_type": "ImpactStringSelector",
+      "_meta": {
+        "title": "String Selector"
+      }
+    },
+    "767": {
+      "inputs": {
+        "detect_hand": "enable",
+        "detect_body": "enable",
+        "detect_face": "disable",
+        "resolution": 1024,
+        "scale_stick_for_xinsr_cn": "disable",
+        "image": ["771", 0]
+      },
+      "class_type": "OpenposePreprocessor",
+      "_meta": {
+        "title": "OpenPose Pose"
+      }
+    },
+    "768": {
+      "inputs": {
+        "images": ["767", 0]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "771": {
+      "inputs": {
+        "image": "00043-1961191637.png",
+        "upload": "image"
+      },
+      "class_type": "LoadImage",
+      "_meta": {
+        "title": "Load Image"
+      }
+    },
+    "779": {
+      "inputs": {
+        "rem_mode": "RMBG-1.4",
+        "image_output": "Preview",
+        "save_prefix": "ComfyUI",
+        "torchscript_jit": false,
+        "images": ["791", 0]
+      },
+      "class_type": "easy imageRemBg",
+      "_meta": {
+        "title": "Image Remove Bg"
+      }
+    },
+    "782": {
+      "inputs": {
+        "channel": "red",
+        "image": ["779", 0]
+      },
+      "class_type": "ImageToMask",
+      "_meta": {
+        "title": "Convert Image to Mask"
+      }
+    },
+    "784": {
+      "inputs": {
+        "size": 1024,
+        "mode": false,
+        "images": ["771", 0]
+      },
+      "class_type": "easy imageScaleDownToSize",
+      "_meta": {
+        "title": "Image Scale Down To Size"
+      }
+    },
+    "785": {
+      "inputs": {
+        "image": ["784", 0]
+      },
+      "class_type": "easy imageSize",
+      "_meta": {
+        "title": "ImageSize"
+      }
+    },
+    "786": {
+      "inputs": {
+        "rgthree_comparer": {
+          "images": [
+            {
+              "name": "A",
+              "selected": true,
+              "url": "/api/view?filename=rgthree.compare._temp_zbgyo_00003_.png&type=temp&subfolder=&rand=0.755660324342277"
+            },
+            {
+              "name": "B",
+              "selected": true,
+              "url": "/api/view?filename=rgthree.compare._temp_zbgyo_00004_.png&type=temp&subfolder=&rand=0.6803872019319173"
+            }
+          ]
+        },
+        "image_a": ["788", 0],
+        "image_b": ["99", 1]
+      },
+      "class_type": "Image Comparer (rgthree)",
+      "_meta": {
+        "title": "Image Comparer (rgthree)"
+      }
+    },
+    "787": {
+      "inputs": {
+        "model_name": "RealESRGAN_x4plus.pth"
+      },
+      "class_type": "UpscaleModelLoader",
+      "_meta": {
+        "title": "Load Upscale Model"
+      }
+    },
+    "788": {
+      "inputs": {
+        "upscale_model": ["787", 0],
+        "image": ["99", 1]
+      },
+      "class_type": "ImageUpscaleWithModel",
+      "_meta": {
+        "title": "Upscale Image (using Model)"
+      }
+    },
+    "789": {
+      "inputs": {
+        "switch_1": "On",
+        "lora_name_1": "CharTurn_v4-000003.safetensors",
+        "model_weight_1": 0.76,
+        "clip_weight_1": 1,
+        "switch_2": "On",
+        "lora_name_2": "clothTurn_v1.safetensors",
+        "model_weight_2": 0.13,
+        "clip_weight_2": 1,
+        "switch_3": "Off",
+        "lora_name_3": "None",
+        "model_weight_3": 1,
+        "clip_weight_3": 1
+      },
+      "class_type": "CR LoRA Stack",
+      "_meta": {
+        "title": "💊 CR LoRA Stack"
+      }
+    },
+    "790": {
+      "inputs": {
+        "filename_prefix": "Upscale_Sst",
+        "images": ["788", 0]
+      },
+      "class_type": "SaveImage",
+      "_meta": {
+        "title": "Save Image"
+      }
+    },
+    "791": {
+      "inputs": {
+        "size": 1024,
+        "mode": false,
+        "images": ["726", 0]
+      },
+      "class_type": "easy imageScaleDownToSize",
+      "_meta": {
+        "title": "Image Scale Down To Size"
+      }
+    }
+  }
+}

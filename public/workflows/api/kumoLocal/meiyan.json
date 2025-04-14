@@ -1,0 +1,866 @@
+{
+  "last_node_id": 725,
+  "last_link_id": 36,
+  "nodes": [
+    {
+      "id": 636,
+      "type": "Mask Gaussian Region",
+      "pos": [1460, 130],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "masks",
+          "type": "MASK",
+          "link": 8,
+          "label": "masks"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASKS",
+          "type": "MASK",
+          "links": [19],
+          "shape": 3,
+          "label": "MASKS"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Mask Gaussian Region"
+      },
+      "widgets_values": [7.7]
+    },
+    {
+      "id": 686,
+      "type": "easy fullLoader",
+      "pos": [930, 318],
+      "size": {
+        "0": 430,
+        "1": 590
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_override",
+          "type": "MODEL",
+          "link": null,
+          "label": "model_override"
+        },
+        {
+          "name": "clip_override",
+          "type": "CLIP",
+          "link": null,
+          "label": "clip_override"
+        },
+        {
+          "name": "vae_override",
+          "type": "VAE",
+          "link": null,
+          "label": "vae_override"
+        },
+        {
+          "name": "optional_lora_stack",
+          "type": "LORA_STACK",
+          "link": null,
+          "label": "optional_lora_stack"
+        },
+        {
+          "name": "optional_controlnet_stack",
+          "type": "CONTROL_NET_STACK",
+          "link": null,
+          "label": "optional_controlnet_stack"
+        },
+        {
+          "name": "positive",
+          "type": "STRING",
+          "link": 9,
+          "widget": {
+            "name": "positive"
+          },
+          "label": "positive"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": [1],
+          "shape": 3,
+          "label": "pipe"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [21],
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [11],
+          "shape": 3,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [12],
+          "shape": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy fullLoader"
+      },
+      "widgets_values": [
+        "majicmixRealistic_v7.safetensors",
+        "Default",
+        "Baked VAE",
+        -1,
+        "None",
+        1,
+        1,
+        "width x height (custom)",
+        512,
+        512,
+        "",
+        "none",
+        "comfy",
+        "lowres,worst quality,low quality,monochrome,old photo,lackluster,oversaturated,grayscale,blurry,colorcast,faded,drawing,paiting,crayon,disfigured,sketch,impressionist,text,signature,watermark,username,deformed,ugly,nsfw,more finger,nake,easynegative, FastNegativeEmbedding, BadDream, badpic, badhandv4, holding, holding weapon, bag, handbag, holding bag, bald,underwear,panties,",
+        "none",
+        "comfy",
+        1,
+        false
+      ]
+    },
+    {
+      "id": 692,
+      "type": "CR Apply Multi-ControlNet",
+      "pos": [1460, 494],
+      "size": {
+        "0": 330,
+        "1": 98
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "base_positive",
+          "type": "CONDITIONING",
+          "link": 11,
+          "label": "base_positive"
+        },
+        {
+          "name": "base_negative",
+          "type": "CONDITIONING",
+          "link": 12,
+          "label": "base_negative"
+        },
+        {
+          "name": "controlnet_stack",
+          "type": "CONTROL_NET_STACK",
+          "link": 13,
+          "label": "controlnet_stack"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "base_pos",
+          "type": "CONDITIONING",
+          "links": [2],
+          "shape": 3,
+          "label": "base_pos"
+        },
+        {
+          "name": "base_neg",
+          "type": "CONDITIONING",
+          "links": [3],
+          "shape": 3,
+          "label": "base_neg"
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "show_help"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CR Apply Multi-ControlNet"
+      },
+      "widgets_values": ["On"]
+    },
+    {
+      "id": 694,
+      "type": "WD14Tagger|pysssss",
+      "pos": [515, 674],
+      "size": {
+        "0": 320,
+        "1": 220
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 34,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [9],
+          "shape": 6,
+          "label": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "WD14Tagger|pysssss"
+      },
+      "widgets_values": [
+        "wd-convnext-tagger-v3",
+        0.35000000000000003,
+        0.75,
+        false,
+        false,
+        ""
+      ]
+    },
+    {
+      "id": 705,
+      "type": "SetLatentNoiseMask",
+      "pos": [1890, 130],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 18,
+          "label": "samples"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 19,
+          "label": "mask"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [4],
+          "shape": 3,
+          "label": "LATENT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SetLatentNoiseMask"
+      }
+    },
+    {
+      "id": 719,
+      "type": "MaskSmooth+",
+      "pos": [930, 130],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 24,
+          "label": "mask"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [8],
+          "shape": 3,
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MaskSmooth+"
+      },
+      "widgets_values": [1]
+    },
+    {
+      "id": 699,
+      "type": "CR Multi-ControlNet Stack",
+      "pos": [930, 1038],
+      "size": {
+        "0": 418.1999816894531,
+        "1": 454
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 15,
+          "label": "image_1"
+        },
+        {
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": 16,
+          "label": "image_2"
+        },
+        {
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": 17,
+          "label": "image_3"
+        },
+        {
+          "name": "controlnet_stack",
+          "type": "CONTROL_NET_STACK",
+          "link": null,
+          "label": "controlnet_stack"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROLNET_STACK",
+          "type": "CONTROL_NET_STACK",
+          "links": [13],
+          "shape": 3,
+          "label": "CONTROLNET_STACK"
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "show_help"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CR Multi-ControlNet Stack"
+      },
+      "widgets_values": [
+        "On",
+        "control_v11p_sd15_canny.pth",
+        0.23,
+        0.341,
+        0.763,
+        "On",
+        "control_v11p_sd15_depth.pth",
+        1,
+        0,
+        1,
+        "On",
+        "control_v11p_sd15_lineart.pth",
+        0.22,
+        0.225,
+        0.876
+      ]
+    },
+    {
+      "id": 100,
+      "type": "SaveImage",
+      "pos": [2620, 130],
+      "size": {
+        "0": 320,
+        "1": 270
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": ["Meiyan"]
+    },
+    {
+      "id": 99,
+      "type": "easy fullkSampler",
+      "pos": [500, -680],
+      "size": {
+        "0": 320,
+        "1": 390
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "link": 1,
+          "label": "pipe"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 2,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 4,
+          "label": "latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "clip"
+        },
+        {
+          "name": "xyPlot",
+          "type": "XYPLOT",
+          "link": null,
+          "label": "xyPlot"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 30,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "PIPE_LINE",
+          "links": null,
+          "shape": 3,
+          "label": "pipe"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [6],
+          "shape": 3,
+          "label": "image"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "model"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "positive"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "negative"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "vae"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "clip"
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "seed"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy fullkSampler"
+      },
+      "widgets_values": [
+        20,
+        4.5,
+        "dpmpp_3m_sde_gpu",
+        "karras",
+        0.35000000000000003,
+        "Hide",
+        0,
+        "ComfyUI",
+        111591311629570,
+        "randomize"
+      ]
+    },
+    {
+      "id": 706,
+      "type": "VAEEncode",
+      "pos": [480, -90],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 31,
+          "label": "pixels"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 21,
+          "label": "vae"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [18],
+          "shape": 3,
+          "label": "LATENT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      }
+    },
+    {
+      "id": 723,
+      "type": "ImageResize+",
+      "pos": [-360, -610],
+      "size": {
+        "0": 315,
+        "1": 218
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 27,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [30, 31, 32, 33, 34, 35, 36],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "width"
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "height"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResize+"
+      },
+      "widgets_values": [512, 512, "nearest", "keep proportion", "always", 0]
+    },
+    {
+      "id": 687,
+      "type": "CannyEdgePreprocessor",
+      "pos": [515, 438],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 33,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [15],
+          "shape": 3,
+          "label": "IMAGE"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CannyEdgePreprocessor"
+      },
+      "widgets_values": [120, 200, 512]
+    },
+    {
+      "id": 720,
+      "type": "Zoe-DepthMapPreprocessor",
+      "pos": [515, 982],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 35,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [16],
+          "shape": 3,
+          "label": "IMAGE"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Zoe-DepthMapPreprocessor"
+      },
+      "widgets_values": [512]
+    },
+    {
+      "id": 722,
+      "type": "LineArtPreprocessor",
+      "pos": [515, 1170],
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 36,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [17],
+          "shape": 3,
+          "label": "IMAGE"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LineArtPreprocessor"
+      },
+      "widgets_values": ["disable", 512]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [-780, -630],
+      "size": [320, 310],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [27],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": ["美颜测试3.jpg", "image"]
+    },
+    {
+      "id": 634,
+      "type": "ColorToMask",
+      "pos": [480, 110],
+      "size": {
+        "0": 315,
+        "1": 178
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 32,
+          "label": "images"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [24],
+          "shape": 3,
+          "label": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ColorToMask"
+      },
+      "widgets_values": [false, 151, 140, 125, 120, 16]
+    }
+  ],
+  "links": [
+    [1, 686, 0, 99, 0, "PIPE_LINE"],
+    [2, 692, 0, 99, 2, "CONDITIONING"],
+    [3, 692, 1, 99, 3, "CONDITIONING"],
+    [4, 705, 0, 99, 4, "LATENT"],
+    [6, 99, 1, 100, 0, "IMAGE"],
+    [8, 719, 0, 636, 0, "MASK"],
+    [9, 694, 0, 686, 5, "STRING"],
+    [11, 686, 4, 692, 0, "CONDITIONING"],
+    [12, 686, 5, 692, 1, "CONDITIONING"],
+    [13, 699, 0, 692, 2, "CONTROL_NET_STACK"],
+    [15, 687, 0, 699, 0, "IMAGE"],
+    [16, 720, 0, 699, 1, "IMAGE"],
+    [17, 722, 0, 699, 2, "IMAGE"],
+    [18, 706, 0, 705, 0, "LATENT"],
+    [19, 636, 0, 705, 1, "MASK"],
+    [21, 686, 2, 706, 1, "VAE"],
+    [24, 634, 0, 719, 0, "MASK"],
+    [27, 2, 0, 723, 0, "IMAGE"],
+    [30, 723, 0, 99, 8, "IMAGE"],
+    [31, 723, 0, 706, 0, "IMAGE"],
+    [32, 723, 0, 634, 0, "IMAGE"],
+    [33, 723, 0, 687, 0, "IMAGE"],
+    [34, 723, 0, 694, 0, "IMAGE"],
+    [35, 723, 0, 720, 0, "IMAGE"],
+    [36, 723, 0, 722, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3719008264462857,
+      "offset": [1969.268506597637, 1172.8583295482986]
+    }
+  },
+  "version": 0.4
+}

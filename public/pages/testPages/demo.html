@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Example</title>
+  </head>
+  <body>
+    <h1>WebSocket Listener</h1>
+    <div id="messages"></div>
+    <p>Total Messages Received: <span id="messageCount">0</span></p>
+
+    <script>
+      const url =
+        "wss://u262838-87ee-75614327.westx.seetacloud.com:8443/ws?clientId=user001";
+      // 创建一个 WebSocket 连接
+      const socket = new WebSocket(url);
+      // 初始化消息计数器
+      let messageCount = 0;
+      // 连接建立时的回调函数
+      socket.onopen = function (event) {
+        console.log("WebSocket connection established.");
+        socket.send("Hello, Server!"); // 向服务器发送消息
+      };
+
+      // 接收到消息时的回调函数
+      socket.onmessage = function (event) {
+        console.log("Message received:", event.data);
+        // 将接收到的消息解析为JSON对象
+        const messageData = JSON.parse(event.data);
+
+        // 检查消息类型是否为 'execution_start'
+        if (messageData.type === "execution_start") {
+          // 如果是 'execution_start'，将计数器归一
+          messageCount = 1;
+        } else if (messageData.type !== "status") {
+          // 否则，增加消息计数
+          messageCount++;
+        }
+        // 更新页面上的消息计数显示
+        document.getElementById("messageCount").innerText = messageCount;
+        // 在页面上显示接收到的消息
+        const messageDiv = document.getElementById("messages");
+        messageDiv.innerHTML += `<p>${event.data}</p>`;
+      };
+
+      // 连接关闭时的回调函数
+      socket.onclose = function (event) {
+        console.log("WebSocket connection closed.");
+      };
+
+      // 发生错误时的回调函数
+      socket.onerror = function (error) {
+        console.error("WebSocket error:", error);
+      };
+    </script>
+  </body>
+</html>

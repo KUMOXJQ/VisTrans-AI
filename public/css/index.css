@@ -1,0 +1,42 @@
+.homepage {
+  /* width: 100vw; */
+  height: 100vh; /* 视口高度 */
+  display: flex;
+  /* position: absolute; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 5%;
+  /* font-size: 2rem; */
+  /* background-color: #f0f0f0; */
+  position: relative;
+  transition: transform 0.5s ease-in-out; /* 动画效果 */
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+  /* width: 95vw; */
+  height: 100vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  /* height: auto; */
+  gap: 40px;
+  transition: transform 0.5s ease-in-out;
+}
+
+#slide-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

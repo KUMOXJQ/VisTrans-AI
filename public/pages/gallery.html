@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <script src="../js/three.min.js"></script>
+    <script src="../js/canvas.js"></script>
+    <script src="./js/simplex-noise.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "SourceHanSansCN";
+        src: url("../fonts/思源黑体/SourceHanSansCN-Regular.otf");
+      }
+
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* 背景画布位于内容后面 */
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #01183c 0%, #000e18 100%);
+        color: #ffffff;
+        font-family: "SourceHanSerifCN", "Roboto", sans-serif;
+      }
+
+      .container {
+        flex: 1;
+      }
+
+      .header {
+        position: relative;
+        padding: 1em 2em;
+      }
+
+      .button {
+        font-family: SourceHanSerifCN;
+        padding: 8px 16px;
+        font-size: 1rem;
+        border: 2px solid;
+        display: inline-block;
+        cursor: pointer;
+        background-color: rgba(77, 1, 255, 0);
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: rgba(0, 123, 255, 0.877);
+        animation: animated-border 1.5s infinite;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 40px 0;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+        letter-spacing: 1.5px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2em;
+        padding: 2em;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .gallery img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+          filter 0.3s ease-in-out;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.6);
+        filter: brightness(1.1);
+      }
+
+      footer {
+        text-align: center;
+        padding: 1.5em;
+        background: #1c1c1c;
+        color: #b0b0b0;
+        font-size: 0.9rem;
+        border-top: 1px solid #333;
+      }
+
+      footer a {
+        color: #81c784;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      footer a:hover {
+        color: #a5d6a7;
+      }
+
+      .loader,
+      .error {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #b0b0b0;
+        padding: 2em;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1em;
+          padding: 1em;
+        }
+
+        .back-button {
+          top: 0.5em;
+          left: 0.5em;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="canvas" class="bg"></div>
+    <div class="header">
+      <a class="button" href="http://localhost:4000/">返回主页</a>
+    </div>
+    <div class="container">
+      <h1>图片画廊</h1>
+      <div class="gallery" id="gallery"></div>
+    </div>
+
+    <script>
+      async function fetchImages() {
+        const gallery = document.getElementById("gallery");
+        gallery.innerHTML = '<div class="loader">Loading...</div>';
+
+        try {
+          const response = await fetch("/api/images");
+          const images = await response.json();
+
+          gallery.innerHTML = "";
+          images.forEach((image) => {
+            const img = document.createElement("img");
+            img.src = image.filePath;
+            img.alt = image.imageName;
+            gallery.appendChild(img);
+          });
+        } catch (error) {
+          console.error("Error fetching images:", error);
+          gallery.innerHTML = '<div class="error">Failed to load images.</div>';
+        }
+      }
+
+      fetchImages();
+    </script>
+  </body>
+</html>

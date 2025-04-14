@@ -1,0 +1,344 @@
+/* styles.css */
+
+@font-face {
+  font-family: "SourceHanSansCN";
+  src: url("../fonts/思源黑体/SourceHanSansCN-Bold.otf"); /* IE9 Compatibility Modes */
+}
+
+@font-face {
+  font-family: "SourceHanSerifCN";
+  src: url("../fonts/思源宋体/SourceHanSerifCN-Regular.otf");
+}
+
+@font-face {
+  font-family: "Novecento";
+  src: url("../fonts/Novecento/Novecento-Wide-Bold.otf");
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: calc(
+      0.5em + 1vw
+    ); /* 在设备分辨率小于等于768px时，字体大小为20像素 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    font-size: calc(
+      0.5em + 1vw
+    ); /* 在设备分辨率小于等于480px时，字体大小为16像素 */
+  }
+}
+
+html body {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  /* padding: 20px; */
+  background: linear-gradient(to bottom, #01183c 0%, #000e18 100%);
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  /* border: 1px solid white; */
+}
+
+/* 添加首页后弃用 */
+.main {
+  /* padding: 10% 5% 10% 5%; */
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; */
+  display: block;
+  margin: auto;
+  /* width: 95vw; */
+  height: 95vh;
+  /* height: auto; */
+  gap: 24px;
+}
+
+#downloadButton {
+  position: absolute;
+  z-index: 1;
+  bottom: 8%;
+  right: 8%;
+  scale: 1;
+}
+
+.bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #c73434; */
+  z-index: -1;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 25vw;
+
+  /* height: 60vh; */
+  flex: 1;
+  gap: 40px;
+}
+
+.title {
+  position: relative;
+  font-family: "SourceHanSansCN";
+  font-size: 3rem;
+  margin: 0 0 0 8%;
+  height: 30vh;
+  width: 100%;
+  flex: 3;
+  /* gap: 50px; */
+}
+
+.engTitle {
+  position: absolute;
+  bottom: 5%;
+  left: -5%;
+  font-size: 1.5em;
+  /* transform: translate(-50%, -50%); */
+
+  font-family: "Novecento";
+  text-align: center;
+  background-image: linear-gradient(
+    to left,
+    rgba(1, 8, 68, 0.808),
+    rgba(70, 117, 245, 0.726)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cnTitle {
+  position: absolute;
+  bottom: 8%;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  font-family: "SourceHanSansCN";
+  text-align: center;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.right {
+  flex: 3;
+  max-width: 60vw;
+  /* height: 50vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
+#sendImageContainer {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  flex: 4;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(240, 248, 255, 0);
+  margin: auto;
+  align-items: center;
+}
+
+#overlay {
+  display: none; /* 默认隐藏遮罩层 */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#modal {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 5px;
+}
+
+#close-modal {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#externalImageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(199, 199, 199); */
+}
+
+input[type="file"] {
+  /* margin-bottom: 10px; */
+}
+
+button {
+  font-family: SourceHanSerifCN;
+  padding: 8px 16px;
+  font-size: 1rem;
+  border: 2px solid;
+  display: inline-block;
+  cursor: pointer;
+  background-color: rgba(77, 1, 255, 0);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.gallery-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: rgba(77, 1, 255, 0);
+  color: #ffffff;
+  font-family: SourceHanSerifCN;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  z-index: 1000;
+}
+
+.gallery-button:hover {
+  background-color: rgba(0, 123, 255, 0.877);
+  animation: animated-border 1.5s infinite;
+}
+
+@media (max-width: 768px) {
+  .gallery-button {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+}
+
+button:hover {
+  background-color: rgba(0, 123, 255, 0.877);
+  animation: animated-border 1.5s infinite;
+}
+
+#uploadedImage,
+#externalImage {
+  /* margin: auto; */
+  opacity: 0.9;
+  /* display: block;  */
+  /* border-radius: 5px; */
+  /* min-height: 200px; */
+  /* min-width: 200px; */
+  object-fit: contain;
+  max-height: 50vh;
+  /* width: auto; */
+  /* max-width: 100%; */
+  z-index: 0;
+
+  /* padding: 6px; */
+}
+
+#targetButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes animated-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+}
+
+.uploadButton {
+  border: 2px solid;
+  /* border-radius: 10px; */
+  padding: 16px;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 16px;
+  font-family: SourceHanSerifCN;
+  font-size: 1rem;
+  color: #fff;
+  transition: background-color 0.3s;
+  /* background-color: #6200ffde; */
+}
+
+.uploadButton:hover {
+  background-color: rgba(0, 123, 255, 0.877);
+  animation: animated-border 1.5s infinite;
+}
+
+/* 进度条 */
+#progressBarContainer {
+  width: 36vw;
+  height: 16px;
+  background-color: #eee;
+  border-radius: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  z-index: 1;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%; /* Will be updated by JavaScript */
+  background-color: green;
+  border-radius: 10px;
+  transition: width 2s, opacity 2s; /* Smooth transition for width and opacity */
+}
+
+#messages {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 20px;
+  /* border-radius: 5px; */
+  min-height: 50px; /* 最小高度 */
+}
+
+p {
+  font-size: 18px;
+  font-family: SourceHanSerifCN;
+}
+
+#messageCount {
+  font-weight: bold;
+}

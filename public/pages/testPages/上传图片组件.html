@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片上传组件</title>
+    <link rel="stylesheet" href="../css/upload.css" />
+    <!-- 引入 layui.css -->
+    <link href="//unpkg.com/layui@2.9.16/dist/css/layui.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- 组件HTML代码 -->
+    <div class="image-upload-component">
+      <label for="image-upload" class="upload-label">
+        <input
+          type="file"
+          id="image-upload"
+          accept="image/*"
+          style="display: none"
+          onchange="handleImageUpload(event)"
+        />
+        <div class="upload-button">上传图片</div>
+        <div class="preview-container" style="display: none">
+          <img id="preview-image" src="" alt="预览图片" />
+        </div>
+      </label>
+      <div class="error-message" style="display: none">请上传一张图片</div>
+    </div>
+    <script src="../js/upload.js"></script>
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.9.16/dist/layui.js"></script>
+  </body>
+</html>
